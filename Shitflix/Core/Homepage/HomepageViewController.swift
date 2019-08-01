@@ -10,6 +10,8 @@ import UIKit
 
 class HomepageViewController: UIViewController {
     
+    var movieArchive: MovieArchive = MovieArchive.archive
+    
     override func loadView() {
         let v = HomepageView()
         //TODO
