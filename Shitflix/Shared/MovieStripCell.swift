@@ -53,10 +53,11 @@ class MovieStripCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        layout.itemSize = CGSize(width: 100, height: 150)
+        /* select the size of the single movie cell */
+        let w = 105
+        layout.itemSize = CGSize(width: w, height: w * 3/2)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.frame = bounds
-        
-        self.backgroundColor = .red
     }
     
     // quick accessor to collectionView layout bypassing cast

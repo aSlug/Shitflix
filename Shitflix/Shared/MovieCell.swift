@@ -63,7 +63,6 @@ class MovieCell: UICollectionViewCell {
             width: self.bounds.width,
             height: self.bounds.height
         )
-        self.backgroundColor = .green
     }
     
 }
