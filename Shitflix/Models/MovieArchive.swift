@@ -13,11 +13,21 @@ class MovieArchive {
     // singleton instance of the whole movie archive
     static let archive = MovieArchive()
     
-    var headliner: Movie?
-    var strips: [MovieStrip]?
+    var headliner: Movie? {
+        didSet {
+            archiveDidUpdate()
+        }
+    }
     
-    // TODO to be called whenever the movie archive changes (eg: new movie added to my list)
-    var archiveDidUpdate: (() -> ())?
+    var strips: [MovieStrip] = [] {
+        didSet {
+            archiveDidUpdate()
+        }
+    }
+    
+    var archiveDidUpdate: () -> Void = {
+        print("archiveDidUpdate not defined yet")
+    }
     
     init() {
         
@@ -26,8 +36,9 @@ class MovieArchive {
             switch result {
             case .success(let movie):
                 self.headliner = movie
-            case .failure( _):
+            case .failure(let error):
                 print("Failure while retrieving movie with id \(Constants.headlinerID)")
+                print(error)
             }
         })
         
@@ -38,9 +49,10 @@ class MovieArchive {
                 switch result {
                 case .success(let movies):
                     let strip = MovieStrip(name: movieGroupType.rawValue, movies: movies)
-                    self.strips?.append(strip)
-                case .failure( _):
+                    self.strips.append(strip)
+                case .failure(let error):
                     print("Failure while retrieving movies for strip \(movieGroupType.rawValue)")
+                    print(error)
                 }
             })
             

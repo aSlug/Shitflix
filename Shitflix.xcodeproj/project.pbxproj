@@ -32,6 +32,8 @@
 		2AEC59BC22F4635D00DC8CD2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59BB22F4635D00DC8CD2 /* Constants.swift */; };
 		2AEC59BE22F4659600DC8CD2 /* MovieGroupType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59BD22F4659600DC8CD2 /* MovieGroupType.swift */; };
 		2AEC59C122F4678100DC8CD2 /* TMDResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59C022F4678100DC8CD2 /* TMDResources.swift */; };
+		2AEC59C622F4877F00DC8CD2 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59C522F4877F00DC8CD2 /* Palette.swift */; };
+		2AEC59C922F488CA00DC8CD2 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59C822F488CA00DC8CD2 /* UIColor+Hex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		2AEC59BB22F4635D00DC8CD2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2AEC59BD22F4659600DC8CD2 /* MovieGroupType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGroupType.swift; sourceTree = "<group>"; };
 		2AEC59C022F4678100DC8CD2 /* TMDResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDResources.swift; sourceTree = "<group>"; };
+		2AEC59C522F4877F00DC8CD2 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		2AEC59C822F488CA00DC8CD2 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,7 @@
 		2AEC595F22F2DD1E00DC8CD2 /* Shitflix */ = {
 			isa = PBXGroup;
 			children = (
+				2AEC59C722F4887B00DC8CD2 /* Utils */,
 				2AEC59BA22F4634E00DC8CD2 /* Commons */,
 				2AEC59B722F4284500DC8CD2 /* Services */,
 				2AEC59AB22F2FDFB00DC8CD2 /* Models */,
@@ -190,8 +195,8 @@
 		2AEC599422F2DFD100DC8CD2 /* Homepage */ = {
 			isa = PBXGroup;
 			children = (
-				2AEC599022F2DFBE00DC8CD2 /* HomepageView.swift */,
 				2AEC599222F2DFCB00DC8CD2 /* HomepageViewController.swift */,
+				2AEC599022F2DFBE00DC8CD2 /* HomepageView.swift */,
 			);
 			path = Homepage;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			children = (
 				2AEC59BB22F4635D00DC8CD2 /* Constants.swift */,
 				2AEC59BD22F4659600DC8CD2 /* MovieGroupType.swift */,
+				2AEC59C522F4877F00DC8CD2 /* Palette.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -265,6 +271,14 @@
 				2AEC59C022F4678100DC8CD2 /* TMDResources.swift */,
 			);
 			path = "The Movie Database";
+			sourceTree = "<group>";
+		};
+		2AEC59C722F4887B00DC8CD2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2AEC59C822F488CA00DC8CD2 /* UIColor+Hex.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,10 +412,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AEC59AD22F2FE0800DC8CD2 /* Movie.swift in Sources */,
+				2AEC59C622F4877F00DC8CD2 /* Palette.swift in Sources */,
 				2AEC59B322F320A200DC8CD2 /* MovieCell.swift in Sources */,
 				2AEC599922F2E02200DC8CD2 /* FindView.swift in Sources */,
 				2AEC59B922F4287D00DC8CD2 /* TMDService.swift in Sources */,
 				2AEC599322F2DFCB00DC8CD2 /* HomepageViewController.swift in Sources */,
+				2AEC59C922F488CA00DC8CD2 /* UIColor+Hex.swift in Sources */,
 				2AEC59A622F2EAB500DC8CD2 /* MainTabBarController.swift in Sources */,
 				2AEC59C122F4678100DC8CD2 /* TMDResources.swift in Sources */,
 				2AEC59A122F2E05E00DC8CD2 /* OtherView.swift in Sources */,

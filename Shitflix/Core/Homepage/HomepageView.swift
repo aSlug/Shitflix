@@ -10,7 +10,7 @@ import UIKit
 
 class HomepageView: UIView {
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,6 +40,8 @@ class HomepageView: UIView {
     private func style() {
         /* permit the headliner to overflow in the safe area */
         collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.backgroundColor = UIColor(hex: Palette.background)
+        self.backgroundColor = UIColor(hex: Palette.background)
     }
     
     override func layoutSubviews() {
@@ -60,13 +62,13 @@ class HomepageView: UIView {
 extension HomepageView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return MovieArchive.archive.strips?.count ?? 0
+        return MovieArchive.archive.strips.count
     }
     
     // strips
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let stripCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieStripCell.rID, for: indexPath) as! MovieStripCell
-        stripCell.movies = MovieArchive.archive.strips?[indexPath.row].movies
+        stripCell.movies = MovieArchive.archive.strips[indexPath.row].movies
         return stripCell
     }
     

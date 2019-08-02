@@ -10,11 +10,13 @@ import UIKit
 
 class HomepageViewController: UIViewController {
     
-    var movieArchive: MovieArchive = MovieArchive.archive
+    var movieArchive: MovieArchive = .archive
     
     override func loadView() {
         let v = HomepageView()
-        //TODO
+        movieArchive.archiveDidUpdate = {
+            v.collectionView.reloadData()
+        }
         self.view = v
     }
     

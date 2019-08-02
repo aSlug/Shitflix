@@ -47,8 +47,10 @@ class MovieCell: UICollectionViewCell {
             switch result {
             case .success(let image):
                 self.poster.image = image
-            case .failure( _):
+            case .failure(let error):
                 print("Failure while retrieving movie image from url \(self.movie!.posterPath)")
+                print(error)
+
             }
         }
     }

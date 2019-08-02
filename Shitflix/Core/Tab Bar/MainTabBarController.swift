@@ -43,7 +43,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func style() {
-        //TODO
+        self.tabBar.barTintColor = .black
     }
     
 }

@@ -14,12 +14,12 @@ struct Movie {
     let adult: Bool?
     let overview: String?
     let releaseDate: Date?
-    let genre: [String]
+    let genre: [Int]
     let id: Int
     let originalTitle: String?
     let title: String
     let backdropPath: String?
-    let popularity: Int?
+    let popularity: Double?
     let votes: Int?
     let video: Bool?
     let voteAvg: Double?
@@ -51,12 +51,12 @@ extension Movie: Codable {
         adult = try values.decodeIfPresent(Bool.self, forKey: .adult)
         releaseDate = try values.decodeIfPresent(Date.self, forKey: .releaseDate)
         overview = try values.decodeIfPresent(String.self, forKey: .overview)
-        genre = try values.decodeIfPresent([String].self, forKey: .genre) ?? []
+        genre = try values.decodeIfPresent([Int].self, forKey: .genre) ?? []
         id = try values.decode(Int.self, forKey: .id)
         originalTitle = try values.decodeIfPresent(String.self, forKey: .originalTitle)
         title = try values.decode(String.self, forKey: .title)
         backdropPath = try values.decodeIfPresent(String.self, forKey: .backdrop)
-        popularity = try values.decodeIfPresent(Int.self, forKey: .popularity)
+        popularity = try values.decodeIfPresent(Double.self, forKey: .popularity)
         votes = try values.decodeIfPresent(Int.self, forKey: .votes)
         video = try values.decodeIfPresent(Bool.self, forKey: .video)
         voteAvg = try values.decodeIfPresent(Double.self, forKey: .voteAvg)

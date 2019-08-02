@@ -10,7 +10,7 @@ import Foundation
 
 struct TMDEndpoints {
     static let apiEndpoint = "https://api.themoviedb.org/3"
-    static let baseImgUrl = "http://image.tmdb.org/t/p/"
+    static let baseImgUrl = "https://image.tmdb.org/t/p/"
 }
 
 struct TMDResources {

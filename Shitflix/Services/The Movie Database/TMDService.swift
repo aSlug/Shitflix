@@ -22,9 +22,9 @@ class TMDService {
     
     static func fetchImage(from path: String, ofSize size: PosterSizes, then handler: @escaping (Result<UIImage, Error>) -> Void) {
         
-        let url = TMDEndpoints.baseImgUrl + size.rawValue + "/" + path
+        let url = TMDEndpoints.baseImgUrl + size.rawValue + path
         
-        URLSession.shared.dataTask(with: URL(fileURLWithPath: url)) { data, response, error in
+        URLSession.shared.dataTask(with: URL(string: url)!) { data, response, error in
             
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
@@ -45,12 +45,13 @@ class TMDService {
     
     static func getMovie(id: Int, then handler: @escaping (Result<Movie, Error>) -> Void) {
         
-        var urlComp = URLComponents(string: TMDEndpoints.apiEndpoint + TMDResources.movie + String(id))!
+        var urlComp = URLComponents(string: TMDEndpoints.apiEndpoint + TMDResources.movie + "/" + String(id))!
         urlComp.queryItems = [
             URLQueryItem(name: "api_key", value: apiKey)
         ]
+        let url = urlComp.url!.absoluteString
         
-        URLSession.shared.dataTask(with: URL(fileURLWithPath: urlComp.url!.absoluteString)) { data, response, error in
+        URLSession.shared.dataTask(with: URL(string: url)!) { data, response, error in
             
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
@@ -101,8 +102,9 @@ class TMDService {
         urlComp.queryItems = [
             URLQueryItem(name: "api_key", value: apiKey)
         ]
+        let url = urlComp.url!.absoluteString
         
-        URLSession.shared.dataTask(with: URL(fileURLWithPath: urlComp.url!.absoluteString)) { data, response, error in
+        URLSession.shared.dataTask(with: URL(string: url)!) { data, response, error in
             
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,

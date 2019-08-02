@@ -42,7 +42,8 @@ class MovieStripCell: UICollectionViewCell {
     }
     
     private func style() {
-        // TODO
+        collectionView.backgroundColor = UIColor(hex: Palette.background)
+        self.backgroundColor = UIColor(hex: Palette.background)
     }
     
     private func update() {
@@ -52,7 +53,7 @@ class MovieStripCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        layout.itemSize = CGSize(width: bounds.width, height: 140)
+        layout.itemSize = CGSize(width: 100, height: 150)
         collectionView.frame = bounds
         
         self.backgroundColor = .red
