@@ -11,6 +11,6 @@ import Foundation
 struct MovieStrip {
     
     let name: String
-    let movies: [Movie]?
+    var movies: [Movie]?
     
 }

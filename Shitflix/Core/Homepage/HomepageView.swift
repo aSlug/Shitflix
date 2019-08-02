@@ -68,7 +68,7 @@ extension HomepageView: UICollectionViewDataSource {
     // strips
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let stripCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieStripCell.rID, for: indexPath) as! MovieStripCell
-        stripCell.movies = MovieArchive.archive.strips[indexPath.row].movies
+        stripCell.strip = MovieArchive.archive.strips[indexPath.row]
         return stripCell
     }
     

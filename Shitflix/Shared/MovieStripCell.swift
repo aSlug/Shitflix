@@ -10,15 +10,16 @@ import UIKit
 
 class MovieStripCell: UICollectionViewCell {
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
     static let rID = "strip"
     
-    var movies: [Movie]? {
+    var strip: MovieStrip? {
         didSet {
             update()
         }
     }
+    
+    private let label = UILabel()
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -31,27 +32,31 @@ class MovieStripCell: UICollectionViewCell {
     }
     
     private func setup() {
-        layout.scrollDirection = .horizontal
+        label.text = strip?.name
         
+        layout.scrollDirection = .horizontal
+        collectionView.dataSource = self
         collectionView.register(MovieCell.self,
                                 forCellWithReuseIdentifier: MovieCell.rID)
         
-        collectionView.dataSource = self
-        
+        addSubview(label)
         addSubview(collectionView)
     }
     
     private func style() {
-        collectionView.backgroundColor = UIColor(hex: Palette.background)
         self.backgroundColor = UIColor(hex: Palette.background)
+        
+        collectionView.backgroundColor = UIColor(hex: Palette.background)
     }
     
     private func update() {
-        // TODO
+        collectionView.reloadData()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        label.frame = CGRect(x: 10, y: 0, width: self.bounds.width - 20, height: 30)
         
         /* select the size of the single movie cell */
         let w = 105
@@ -70,12 +75,12 @@ class MovieStripCell: UICollectionViewCell {
 extension MovieStripCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies?.count ?? 0
+        return strip?.movies?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let movieCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.rID, for: indexPath) as! MovieCell
-        movieCell.movie = movies?[indexPath.row]
+        movieCell.movie = strip?.movies?[indexPath.row]
         return movieCell
     }
 
