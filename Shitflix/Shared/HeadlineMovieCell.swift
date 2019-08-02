@@ -61,7 +61,7 @@ class HeadlineMovieCell: UICollectionViewCell {
     private func update() {
         guard movie != nil else { return }
         
-        TheMovieDatabase.fetchImage(from: self.movie!.posterPath, ofSize: .w500) { result in
+        TMDService.fetchImage(from: self.movie!.posterPath, ofSize: .w500) { result in
             switch result {
             case .success(let image):
                 self.poster.image = image

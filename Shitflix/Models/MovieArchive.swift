@@ -20,7 +20,32 @@ class MovieArchive {
     var archiveDidUpdate: (() -> ())?
     
     init() {
-
+        
+        /* retrieve headliner */
+        TMDService.getMovie(id: Constants.headlinerID, then: { result in
+            switch result {
+            case .success(let movie):
+                self.headliner = movie
+            case .failure( _):
+                print("Failure while retrieving movie with id \(Constants.headlinerID)")
+            }
+        })
+        
+        /* retrieve strips */
+        for movieGroupType in MovieGroupType.allCases {
+            
+            TMDService.getMovieStrip(for: movieGroupType, then: { result in
+                switch result {
+                case .success(let movies):
+                    let strip = MovieStrip(name: movieGroupType.rawValue, movies: movies)
+                    self.strips?.append(strip)
+                case .failure( _):
+                    print("Failure while retrieving movies for strip \(movieGroupType.rawValue)")
+                }
+            })
+            
+        }
+        
     }
     
 }
