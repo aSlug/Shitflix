@@ -20,9 +20,7 @@ class MovieArchive {
     var archiveDidUpdate: (() -> ())?
     
     init() {
-        
-        //TODO retrieve data
-        
+
     }
     
 }

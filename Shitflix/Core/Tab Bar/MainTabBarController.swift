@@ -27,7 +27,7 @@ class MainTabBarController: UITabBarController {
     
     private func setup() {
         homepageVC.tabBarItem.image = UIImage(named: "homepage-icon-normal")
-        homepageVC.tabBarItem.selectedImage = UIImage(named: "homapage-icon-selected")
+        homepageVC.tabBarItem.selectedImage = UIImage(named: "homepage-icon-selected")
         
         findVC.tabBarItem.image = UIImage(named: "find-icon-normal")
         findVC.tabBarItem.selectedImage = UIImage(named: "find-icon-selected")

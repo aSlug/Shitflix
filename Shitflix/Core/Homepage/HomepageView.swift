@@ -38,7 +38,8 @@ class HomepageView: UIView {
     }
     
     private func style() {
-        // TODO
+        /* permit the headliner to overflow in the safe area */
+        collectionView.contentInsetAdjustmentBehavior = .never
     }
     
     override func layoutSubviews() {

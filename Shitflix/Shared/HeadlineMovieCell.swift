@@ -59,12 +59,21 @@ class HeadlineMovieCell: UICollectionViewCell {
     }
     
     private func update() {
-        poster.image = movie?.poster
+        guard movie != nil else { return }
+        
+        TheMovieDatabase.fetchImage(from: self.movie!.posterPath, ofSize: .w500) { result in
+            switch result {
+            case .success(let image):
+                self.poster.image = image
+            case .failure( _):
+                print("Failure while retrieving movie image from url \(self.movie!.posterPath)")
+            }
+        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         let w = self.bounds.width
         let h = self.bounds.height
         

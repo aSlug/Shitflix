@@ -28,6 +28,7 @@
 		2AEC59AF22F31A5900DC8CD2 /* MovieArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59AE22F31A5900DC8CD2 /* MovieArchive.swift */; };
 		2AEC59B122F31DB000DC8CD2 /* MovieStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59B022F31DB000DC8CD2 /* MovieStrip.swift */; };
 		2AEC59B322F320A200DC8CD2 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59B222F320A200DC8CD2 /* MovieCell.swift */; };
+		2AEC59B922F4287D00DC8CD2 /* TheMovieDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59B822F4287D00DC8CD2 /* TheMovieDatabase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		2AEC59AE22F31A5900DC8CD2 /* MovieArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieArchive.swift; sourceTree = "<group>"; };
 		2AEC59B022F31DB000DC8CD2 /* MovieStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStrip.swift; sourceTree = "<group>"; };
 		2AEC59B222F320A200DC8CD2 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		2AEC59B822F4287D00DC8CD2 /* TheMovieDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieDatabase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +127,8 @@
 		2AEC595F22F2DD1E00DC8CD2 /* Shitflix */ = {
 			isa = PBXGroup;
 			children = (
-				2AEC59AB22F2FDFB00DC8CD2 /* Model */,
+				2AEC59B722F4284500DC8CD2 /* Services */,
+				2AEC59AB22F2FDFB00DC8CD2 /* Models */,
 				2AEC598F22F2DFA000DC8CD2 /* Core */,
 				2AEC598E22F2DF4000DC8CD2 /* Shared */,
 				2AEC596022F2DD1E00DC8CD2 /* AppDelegate.swift */,
@@ -213,14 +216,14 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
-		2AEC59AB22F2FDFB00DC8CD2 /* Model */ = {
+		2AEC59AB22F2FDFB00DC8CD2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2AEC59AC22F2FE0800DC8CD2 /* Movie.swift */,
 				2AEC59AE22F31A5900DC8CD2 /* MovieArchive.swift */,
 				2AEC59B022F31DB000DC8CD2 /* MovieStrip.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2AEC59B422F327D400DC8CD2 /* Tab Bar */ = {
@@ -229,6 +232,14 @@
 				2AEC59A522F2EAB500DC8CD2 /* MainTabBarController.swift */,
 			);
 			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		2AEC59B722F4284500DC8CD2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2AEC59B822F4287D00DC8CD2 /* TheMovieDatabase.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +375,7 @@
 				2AEC59AD22F2FE0800DC8CD2 /* Movie.swift in Sources */,
 				2AEC59B322F320A200DC8CD2 /* MovieCell.swift in Sources */,
 				2AEC599922F2E02200DC8CD2 /* FindView.swift in Sources */,
+				2AEC59B922F4287D00DC8CD2 /* TheMovieDatabase.swift in Sources */,
 				2AEC599322F2DFCB00DC8CD2 /* HomepageViewController.swift in Sources */,
 				2AEC59A622F2EAB500DC8CD2 /* MainTabBarController.swift in Sources */,
 				2AEC59A122F2E05E00DC8CD2 /* OtherView.swift in Sources */,
