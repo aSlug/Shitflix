@@ -48,7 +48,7 @@ class HomepageView: UIView {
         super.layoutSubviews()
         
         layout.headerReferenceSize = CGSize(width: bounds.width, height: 550)
-        layout.itemSize = CGSize(width: bounds.width, height: 160)
+        layout.itemSize = CGSize(width: bounds.width, height: 105 * 3/2 + 30)
         collectionView.frame = bounds
     }
     

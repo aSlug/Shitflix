@@ -50,16 +50,16 @@ class MainTabBarController: UITabBarController {
         self.tabBar.barTintColor = .black
         
         homepageVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: Palette.unselected)], for: .normal)
-        homepageVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
+        homepageVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: Palette.selected)], for: .selected)
         
         findVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: Palette.unselected)], for: .normal)
-        findVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
+        findVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: Palette.selected)], for: .selected)
         
         downloadVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: Palette.unselected)], for: .normal)
-        downloadVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
+        downloadVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: Palette.selected)], for: .selected)
         
         otherVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: Palette.unselected)], for: .normal)
-        otherVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
+        otherVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: Palette.selected)], for: .selected)
         
     }
     

@@ -54,8 +54,6 @@ class HeadlineMovieCell: UICollectionViewCell {
         addToListBtn.setTitle("My list", for: .normal)
         playBtn.setTitle("Play", for: .normal)
         infoBtn.setTitle("Info", for: .normal)
-        
-        self.backgroundColor = .red
     }
     
     private func update() {
