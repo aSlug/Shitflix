@@ -12,4 +12,5 @@ struct Palette {
     static let background = "#141414"
     static let unselected = "#A9A9A9"
     static let selected = "#FFFFFF"
+    static let shitflix = "#E50914"
 }
