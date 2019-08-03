@@ -8,9 +8,13 @@
 
 import Foundation
 
-enum MovieGroupType: String, CaseIterable {
-    case popular = "Popolari ora"
+/*
+ NOTE: the order of the enums determines the
+ order the categories are displayed
+ */
+enum MovieStripType: String, CaseIterable {
     case upcoming = "In arrivo"
     case latest = "Nuove uscite"
+    case popular = "Popolari ora"
     case topRated = "Top rated"
 }

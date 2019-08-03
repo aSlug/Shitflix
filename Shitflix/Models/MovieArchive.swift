@@ -43,12 +43,12 @@ class MovieArchive {
         })
         
         /* retrieve strips */
-        for movieGroupType in MovieGroupType.allCases {
+        for movieGroupType in MovieStripType.allCases {
             
             TMDService.getMovieStrip(for: movieGroupType, then: { result in
                 switch result {
                 case .success(let movies):
-                    let strip = MovieStrip(name: movieGroupType.rawValue, movies: movies)
+                    let strip = MovieStrip(type: movieGroupType, movies: movies)
                     self.strips.append(strip)
                 case .failure(let error):
                     print("Failure while retrieving movies for strip \(movieGroupType.rawValue)")

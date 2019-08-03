@@ -1,18 +1,10 @@
-//
-//  MovieStrip.swift
-//  Shitflix
-//
-//  Created by BCamp User on 01/08/2019.
-//  Copyright © 2019 BCamp User. All rights reserved.
-//
-
 import UIKit
 
-class MovieStripCell: UICollectionViewCell {
+class PostersStrip: UICollectionViewCell, Strip {
     
-    static let rID = "strip"
+    static let rID = "posters-strip"
     
-    var strip: MovieStrip? {
+    var movieStrip: MovieStrip? {
         didSet {
             update()
         }
@@ -34,8 +26,8 @@ class MovieStripCell: UICollectionViewCell {
     private func setup() {
         layout.scrollDirection = .horizontal
         collectionView.dataSource = self
-        collectionView.register(MovieCell.self,
-                                forCellWithReuseIdentifier: MovieCell.rID)
+        collectionView.register(PosterCell.self,
+                                forCellWithReuseIdentifier: PosterCell.rID)
         
         addSubview(label)
         addSubview(collectionView)
@@ -51,7 +43,7 @@ class MovieStripCell: UICollectionViewCell {
     }
     
     private func update() {
-        label.text = strip?.name
+        label.text = movieStrip?.type.rawValue
         collectionView.reloadData()
     }
     
@@ -81,15 +73,15 @@ class MovieStripCell: UICollectionViewCell {
     
 }
 
-extension MovieStripCell: UICollectionViewDataSource {
+extension PostersStrip: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return strip?.movies?.count ?? 0
+        return movieStrip?.movies?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let movieCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.rID, for: indexPath) as! MovieCell
-        movieCell.movie = strip?.movies?[indexPath.row]
+        let movieCell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCell.rID, for: indexPath) as! PosterCell
+        movieCell.movie = movieStrip?.movies?[indexPath.row]
         return movieCell
     }
 

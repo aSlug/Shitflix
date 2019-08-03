@@ -79,7 +79,7 @@ class TMDService {
         
     }
     
-    static func getMovieStrip(for type: MovieGroupType, then handler: @escaping (Result<[Movie], Error>) -> Void) {
+    static func getMovieStrip(for type: MovieStripType, then handler: @escaping (Result<[Movie], Error>) -> Void) {
         
         /* internal structure used to decode an array of movies */
         struct Page: Codable {

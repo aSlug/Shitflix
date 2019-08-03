@@ -26,11 +26,14 @@ class HomepageView: UIView {
     private func setup() {
         layout.scrollDirection = .vertical
         
-        collectionView.register(MovieStripCell.self,
-                                forCellWithReuseIdentifier: MovieStripCell.rID)
         collectionView.register(HeadlineMovieCell.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: HeadlineMovieCell.rID)
+        collectionView.register(BalloonsStrip.self,
+                                forCellWithReuseIdentifier: BalloonsStrip.rID)
+        collectionView.register(PostersStrip.self,
+                                forCellWithReuseIdentifier: PostersStrip.rID)
+
         
         collectionView.dataSource = self
         
@@ -48,7 +51,7 @@ class HomepageView: UIView {
         super.layoutSubviews()
         
         layout.headerReferenceSize = CGSize(width: bounds.width, height: 550)
-        layout.itemSize = CGSize(width: bounds.width, height: 105 * 3/2 + 30)
+        layout.itemSize = CGSize(width: bounds.width, height: 105 * 3/2 + 30) //FIXME: make the height dynamic
         collectionView.frame = bounds
     }
     
@@ -67,8 +70,21 @@ extension HomepageView: UICollectionViewDataSource {
     
     // strips
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let stripCell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieStripCell.rID, for: indexPath) as! MovieStripCell
-        stripCell.strip = MovieArchive.archive.strips[indexPath.row]
+        
+        let strip = MovieArchive.archive.strips[indexPath.row]
+        let stripCell: Strip
+        
+        /* insert the strip in the correct UICollectionViewCell */
+        switch strip.type {
+        case .upcoming:
+            stripCell = collectionView.dequeueReusableCell(withReuseIdentifier: BalloonsStrip.rID, for: indexPath) as! BalloonsStrip
+        case .latest,
+             .popular,
+             .topRated:
+            stripCell = collectionView.dequeueReusableCell(withReuseIdentifier: PostersStrip.rID, for: indexPath) as! PostersStrip
+        }
+    
+        stripCell.movieStrip = strip
         return stripCell
     }
     

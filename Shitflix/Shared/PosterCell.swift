@@ -1,16 +1,8 @@
-//
-//  MovieCell.swift
-//  Shitflix
-//
-//  Created by BCamp User on 01/08/2019.
-//  Copyright © 2019 BCamp User. All rights reserved.
-//
-
 import UIKit
 
-class MovieCell: UICollectionViewCell {
+class PosterCell: UICollectionViewCell {
     
-    static let rID = "movie"
+    static let rID = "poster"
     
     var movie: Movie? {
         didSet {
