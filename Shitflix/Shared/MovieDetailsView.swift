@@ -72,7 +72,6 @@ class MovieDetailsView: UIView {
         blur.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         poster.layer.shadowColor = UIColor.black.cgColor
-//        poster.layer.shadowOffset = CGSize(width: 3, height: 3)
         poster.layer.shadowOpacity = 0.7
         poster.layer.shadowRadius = 8
         
@@ -143,7 +142,6 @@ class MovieDetailsView: UIView {
         let buttonsY = overviewY + overviewH + 20
         
         poster.frame = CGRect(x: w/2 - posterW/2, y: posterY, width: posterW, height: posterH)
-        // TODO: add shade on back of poster
         
         releaseYear.frame = CGRect(x: w * 4/10 - 35, y: posterY + posterH + 15, width: 70, height: 20)
         releaseYear.textAlignment = .center
@@ -153,12 +151,12 @@ class MovieDetailsView: UIView {
         playBtn.frame = CGRect(x: 10, y: playY, width: w - 20, height: playH)
         playBtn.layer.cornerRadius = 3
         playBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        // TODO: fix size of play icon
         
         overview.frame = CGRect(x: 10, y: overviewY, width: w - 20, height: overviewH)
-        overview.numberOfLines = 4
+        overview.numberOfLines = 10
         overview.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        // TODO: make overview fade down and expandable
+        overview.textAlignment = .justified
+        overview.fadeView(style: .bottom, percentage: 0.50)
         
         addToListBtn.frame = CGRect(x: w * 1/8 - btnSize/2, y: buttonsY, width: btnSize, height: btnSize)
         likeBtn.frame = CGRect(x: w * 3/8 - btnSize/2, y: buttonsY, width: btnSize, height: btnSize)

@@ -80,6 +80,7 @@ class HeadlineMovieCell: UICollectionViewCell {
             width: w,
             height: h
         )
+        poster.fadeView(style: .bottom, percentage: 0.15)
         addToListBtn.frame = CGRect(
             x: w * 0.10,
             y: h * 0.88,
@@ -92,15 +93,13 @@ class HeadlineMovieCell: UICollectionViewCell {
             width: 120,
             height: 35
         )
+        playBtn.layer.cornerRadius = 3
         infoBtn.frame = CGRect(
             x: w * 0.90 - 30,
             y: h * 0.88,
             width: 30,
             height: 30
         )
-        
-        playBtn.layer.cornerRadius = 3
-        
     }
     
     @objc func onAddToList() {

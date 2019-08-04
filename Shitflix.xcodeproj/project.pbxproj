@@ -38,6 +38,7 @@
 		3B3DF3A722F5E30100A40500 /* Strip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3A622F5E30100A40500 /* Strip.swift */; };
 		3B3DF3A922F6067700A40500 /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3A822F6067700A40500 /* MovieDetailsView.swift */; };
 		3B3DF3AC22F6069600A40500 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3AB22F6069600A40500 /* MovieDetailsViewController.swift */; };
+		3B3DF3AE22F766E100A40500 /* UIView+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3AD22F766E100A40500 /* UIView+Fade.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		3B3DF3A622F5E30100A40500 /* Strip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strip.swift; sourceTree = "<group>"; };
 		3B3DF3A822F6067700A40500 /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		3B3DF3AB22F6069600A40500 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		3B3DF3AD22F766E100A40500 /* UIView+Fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Fade.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				2AEC59C822F488CA00DC8CD2 /* UIColor+Hex.swift */,
+				3B3DF3AD22F766E100A40500 /* UIView+Fade.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				2AEC599122F2DFBE00DC8CD2 /* HomepageView.swift in Sources */,
 				2AEC596322F2DD1E00DC8CD2 /* ViewController.swift in Sources */,
 				3B3DF3A922F6067700A40500 /* MovieDetailsView.swift in Sources */,
+				3B3DF3AE22F766E100A40500 /* UIView+Fade.swift in Sources */,
 				2AEC59A822F2FBA400DC8CD2 /* HeadlineMovieCell.swift in Sources */,
 				2AEC596122F2DD1E00DC8CD2 /* AppDelegate.swift in Sources */,
 				2AEC599F22F2E05300DC8CD2 /* DownloadViewController.swift in Sources */,
