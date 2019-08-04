@@ -10,7 +10,7 @@ class PostersStrip: UICollectionViewCell, Strip {
         }
     }
     
-    var didSelectMovie: ((Movie) -> ())?
+    var didSelectMovie: ((Int) -> ())?
     
     private let label = UILabel()
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())

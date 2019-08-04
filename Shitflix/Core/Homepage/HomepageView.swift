@@ -12,7 +12,7 @@ class HomepageView: UIView {
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    var didSelectMovie: ((Movie) -> ())?
+    var didSelectMovie: ((Int) -> ())?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

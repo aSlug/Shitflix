@@ -12,7 +12,7 @@ class HeadlineMovieCell: UICollectionViewCell {
     
     var didAddToList: ((Movie) -> ())?
     var didPlay: ((Movie) -> ())?
-    var didInfo: ((Movie) -> ())?
+    var didInfo: ((Int) -> ())?
     
     private var poster = UIImageView()
     private var addToListBtn = UIButton() // TODO: create custom button
@@ -118,7 +118,7 @@ class HeadlineMovieCell: UICollectionViewCell {
     @objc func onInfo() {
         print("Click on info button")
         guard let movie = self.movie else {return}
-        didInfo?(movie)
+        didInfo?(movie.id)
     }
     
 }

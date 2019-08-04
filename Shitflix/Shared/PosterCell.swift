@@ -10,7 +10,7 @@ class PosterCell: UICollectionViewCell {
         }
     }
     
-    var didSelectMovie: ((Movie) -> ())?
+    var didSelectMovie: ((Int) -> ())?
     
     private var poster = UIButton()
     
@@ -60,7 +60,7 @@ class PosterCell: UICollectionViewCell {
     @objc func onTap() {
         print("Tap on poster of movie \(self.movie?.title ?? "unknown")")
         guard let movie = self.movie else { return }
-        self.didSelectMovie?(movie)
+        self.didSelectMovie?(movie.id)
     }
     
 }

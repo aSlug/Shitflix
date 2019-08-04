@@ -14,15 +14,19 @@ class HomepageViewController: UIViewController {
     
     override func loadView() {
         let v = HomepageView()
-        v.didSelectMovie = showDetailsOf(movie:)
+        
+        // TODO: verify reference cycle
+        v.didSelectMovie = showDetailsOfMovie
         movieArchive.archiveDidUpdate = {
             v.collectionView.reloadData()
         }
+        
         self.view = v
     }
     
-    func showDetailsOf(movie: Movie) {
+    private func showDetailsOfMovie(withId id: Int) {
         let movieDetailsVC = MovieDetailsViewController()
+        movieDetailsVC.movieID = id
         self.present(movieDetailsVC, animated: true)
     }
     

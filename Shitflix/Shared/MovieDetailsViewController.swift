@@ -16,6 +16,9 @@ class MovieDetailsViewController: UIViewController {
     override func loadView() {
         let v = MovieDetailsView()
         // TODO inject closures
+        v.didSwipeDown = { [weak self] in
+            self?.dismiss(animated: true)
+        }
         self.view = v
     }
     
@@ -33,5 +36,6 @@ class MovieDetailsViewController: UIViewController {
         })
         
     }
+
     
 }

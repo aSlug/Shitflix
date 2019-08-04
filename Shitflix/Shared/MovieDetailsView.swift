@@ -19,12 +19,16 @@ class MovieDetailsView: UIView {
     private var shareBtn = UIButton()
     private var downloadBtn = UIButton()
     
+    private var blur = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
+    
     var didPlay: ((Movie) -> ())?
     var didToggleAddToList: ((Movie) -> ())?
     var didToggleLike: ((Movie) -> ())?
     var didShare: ((Movie) -> ())?
     var didDownload: ((Movie) -> ())?
     
+    var didSwipeDown: (() -> ())?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         // TODO
@@ -37,6 +41,8 @@ class MovieDetailsView: UIView {
     }
     
     private func setup() {
+        self.addSubview(blur)
+        
         self.addSubview(poster)
         self.addSubview(releaseYear)
         self.addSubview(runtime)
@@ -53,16 +59,17 @@ class MovieDetailsView: UIView {
         likeBtn.addTarget(self, action: #selector(onLike), for: .touchUpInside)
         shareBtn.addTarget(self, action: #selector(onShare), for: .touchUpInside)
         downloadBtn.addTarget(self, action: #selector(onDownload), for: .touchUpInside)
+        
+        /* the use closes the detail view by swiping down */
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(onSwipeDown))
+        swipeGesture.direction = .down
+        self.addGestureRecognizer(swipeGesture)
     }
     
     private func style() {
         
         /* add blurr effect over background image */
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(blurEffectView)
+        blur.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         playBtn.setImage(UIImage(named: "play-button-white"), for: .normal)
         playBtn.setTitle("Play", for: .normal)
@@ -109,6 +116,8 @@ class MovieDetailsView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        blur.frame = self.bounds
+        
         let w = Int(self.bounds.width)
         let posterW = 110
         let posterH = posterW * 3/2
@@ -129,30 +138,34 @@ class MovieDetailsView: UIView {
         downloadBtn.frame = CGRect(x: w * 7/8 - btnSize/2, y: posterH + 100, width: btnSize, height: btnSize)
     }
     
-    @objc func onPlay() {
+    @objc private func onPlay() {
         print("Click on play button")
         guard let movie = self.movie else {return}
         self.didPlay?(movie)
     }
-    @objc func onAdd() {
+    @objc private func onAdd() {
         print("Click on add button")
         guard let movie = self.movie else {return}
         self.didToggleAddToList?(movie)
     }
-    @objc func onLike() {
+    @objc private func onLike() {
         print("Click on like button")
         guard let movie = self.movie else {return}
         self.didToggleLike?(movie)
     }
-    @objc func onShare() {
+    @objc private func onShare() {
         print("Click on share button")
         guard let movie = self.movie else {return}
         self.didShare?(movie)
     }
-    @objc func onDownload() {
+    @objc private func onDownload() {
         print("Click on download button")
         guard let movie = self.movie else {return}
         self.didDownload?(movie)
+    }
+    @objc private func onSwipeDown(_ s: UISwipeGestureRecognizer) {
+        print("Swipe down on movie details view")
+        self.didSwipeDown?()
     }
     
 }
