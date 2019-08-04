@@ -1,5 +1,6 @@
 import UIKit
 
+// TODO: add a subview with suggested movies
 class MovieDetailsView: UIView {
     
     var movie: Movie? {
@@ -31,7 +32,6 @@ class MovieDetailsView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // TODO
         setup()
         style()
     }
@@ -71,8 +71,13 @@ class MovieDetailsView: UIView {
         /* add blurr effect over background image */
         blur.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        poster.layer.shadowColor = UIColor.black.cgColor
+//        poster.layer.shadowOffset = CGSize(width: 3, height: 3)
+        poster.layer.shadowOpacity = 0.7
+        poster.layer.shadowRadius = 8
+        
         playBtn.setImage(UIImage(named: "play-button-white"), for: .normal)
-        playBtn.setTitle("Play", for: .normal)
+        playBtn.setTitle("  Play", for: .normal)
         playBtn.backgroundColor = UIColor(hex: Palette.shitflix)
         playBtn.setTitleColor(.white, for: .normal)
         
@@ -80,6 +85,11 @@ class MovieDetailsView: UIView {
         likeBtn.setImage(UIImage(named: "like-button-normal"), for: .normal)
         shareBtn.setImage(UIImage(named: "share-button-normal"), for: .normal)
         downloadBtn.setImage(UIImage(named: "download-button-normal"), for: .normal)
+        
+        // TODO: change color of info label
+        releaseYear.textColor = .white
+        runtime.textColor = .white
+        overview.textColor = .white
     }
     
     private func update() {
@@ -119,23 +129,41 @@ class MovieDetailsView: UIView {
         blur.frame = self.bounds
         
         let w = Int(self.bounds.width)
-        let posterW = 110
+        let posterW = 130
         let posterH = posterW * 3/2
         
-        poster.frame = CGRect(x: w/2 - posterW/2, y: 40, width: posterW, height: posterH)
-        
-        releaseYear.frame = CGRect(x: w * 1/3 - 25, y: 40 + posterH + 15, width: 50, height: 20)
-        runtime.frame = CGRect(x: w * 2/3 - 25, y: 40 + posterH + 15, width: 50, height: 20)
-        
-        playBtn.frame = CGRect(x: 10, y: posterH + 105, width: w - 20, height: 30)
-        
-        overview.frame = CGRect(x: 10, y: posterH + 40, width: w - 20, height: 50)
-        
         let btnSize = 25
-        addToListBtn.frame = CGRect(x: w * 1/8 - btnSize/2, y: posterH + 100, width: btnSize, height: btnSize)
-        likeBtn.frame = CGRect(x: w * 3/8 - btnSize/2, y: posterH + 100, width: btnSize, height: btnSize)
-        shareBtn.frame = CGRect(x: w * 5/8 - btnSize/2, y: posterH + 100, width: btnSize, height: btnSize)
-        downloadBtn.frame = CGRect(x: w * 7/8 - btnSize/2, y: posterH + 100, width: btnSize, height: btnSize)
+        
+        let posterY = 60
+        let infoY = posterY + posterH + 15
+        let playY = infoY + 50
+        let playH = 33
+        let overviewY = playY + playH + 7
+        let overviewH = 80
+        let buttonsY = overviewY + overviewH + 20
+        
+        poster.frame = CGRect(x: w/2 - posterW/2, y: posterY, width: posterW, height: posterH)
+        // TODO: add shade on back of poster
+        
+        releaseYear.frame = CGRect(x: w * 4/10 - 35, y: posterY + posterH + 15, width: 70, height: 20)
+        releaseYear.textAlignment = .center
+        runtime.frame = CGRect(x: w * 6/10 - 35, y: posterY + posterH + 15, width: 70, height: 20)
+        runtime.textAlignment = .center
+        
+        playBtn.frame = CGRect(x: 10, y: playY, width: w - 20, height: playH)
+        playBtn.layer.cornerRadius = 3
+        playBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        // TODO: fix size of play icon
+        
+        overview.frame = CGRect(x: 10, y: overviewY, width: w - 20, height: overviewH)
+        overview.numberOfLines = 4
+        overview.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        // TODO: make overview fade down and expandable
+        
+        addToListBtn.frame = CGRect(x: w * 1/8 - btnSize/2, y: buttonsY, width: btnSize, height: btnSize)
+        likeBtn.frame = CGRect(x: w * 3/8 - btnSize/2, y: buttonsY, width: btnSize, height: btnSize)
+        shareBtn.frame = CGRect(x: w * 5/8 - btnSize/2, y: buttonsY, width: btnSize, height: btnSize)
+        downloadBtn.frame = CGRect(x: w * 7/8 - btnSize/2, y: buttonsY, width: btnSize, height: btnSize)
     }
     
     @objc private func onPlay() {

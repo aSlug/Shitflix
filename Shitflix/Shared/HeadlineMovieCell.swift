@@ -43,16 +43,14 @@ class HeadlineMovieCell: UICollectionViewCell {
     private func style() {
         self.clipsToBounds = true
         
-//        addToListBtn.setTitle("My list", for: .normal)
         addToListBtn.setImage(UIImage(named: "add-button-normal"), for: .normal)
         
         playBtn.setImage(UIImage(named: "play-button-black"), for: .normal)
-        playBtn.setTitle("Play", for: .normal)
+        playBtn.setTitle("  Play", for: .normal)
         playBtn.setTitleColor(.black, for: .normal)
-        playBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        playBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         playBtn.backgroundColor = .white
         
-//        infoBtn.setTitle("Info", for: .normal)
         infoBtn.setImage(UIImage(named: "info-icon-normal"), for: .normal)
     }
     
@@ -84,19 +82,19 @@ class HeadlineMovieCell: UICollectionViewCell {
         )
         addToListBtn.frame = CGRect(
             x: w * 0.10,
-            y: h * 0.85,
+            y: h * 0.88,
             width: 30,
             height: 30
         )
         playBtn.frame = CGRect(
-            x: w * 0.5 - 50,
-            y: h * 0.85,
-            width: 100,
-            height: 40
+            x: w * 0.5 - 60,
+            y: h * 0.88,
+            width: 120,
+            height: 35
         )
         infoBtn.frame = CGRect(
             x: w * 0.90 - 30,
-            y: h * 0.85,
+            y: h * 0.88,
             width: 30,
             height: 30
         )
