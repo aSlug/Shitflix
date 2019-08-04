@@ -43,9 +43,17 @@ class HeadlineMovieCell: UICollectionViewCell {
     private func style() {
         self.clipsToBounds = true
         
-        addToListBtn.setTitle("My list", for: .normal)
+//        addToListBtn.setTitle("My list", for: .normal)
+        addToListBtn.setImage(UIImage(named: "add-button-normal"), for: .normal)
+        
+        playBtn.setImage(UIImage(named: "play-button-black"), for: .normal)
         playBtn.setTitle("Play", for: .normal)
-        infoBtn.setTitle("Info", for: .normal)
+        playBtn.setTitleColor(.black, for: .normal)
+        playBtn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        playBtn.backgroundColor = .white
+        
+//        infoBtn.setTitle("Info", for: .normal)
+        infoBtn.setImage(UIImage(named: "info-icon-normal"), for: .normal)
     }
     
     private func update() {
@@ -75,37 +83,42 @@ class HeadlineMovieCell: UICollectionViewCell {
             height: h
         )
         addToListBtn.frame = CGRect(
-            x: w * 0.05,
+            x: w * 0.10,
             y: h * 0.85,
             width: 30,
             height: 30
         )
         playBtn.frame = CGRect(
-            x: w * 0.5 - 45,
+            x: w * 0.5 - 50,
             y: h * 0.85,
-            width: 90,
-            height: 30
+            width: 100,
+            height: 40
         )
         infoBtn.frame = CGRect(
-            x: w * 0.95 - 30,
+            x: w * 0.90 - 30,
             y: h * 0.85,
             width: 30,
             height: 30
         )
         
+        playBtn.layer.cornerRadius = 3
+        
     }
     
     @objc func onAddToList() {
-        print("movie \(movie?.title ?? "unknown") added to list")
-        didAddToList?(self.movie!)
+        print("Click on add button")
+        guard let movie = self.movie else {return}
+        didAddToList?(movie)
     }
     @objc func onPlay() {
-        print("playing \(movie?.title ?? "unknown")")
-        didPlay?(self.movie!)
+        print("Click on play button")
+        guard let movie = self.movie else {return}
+        didPlay?(movie)
     }
     @objc func onInfo() {
-        print("info about movie \(movie?.title ?? "unknown")")
-        didInfo?(self.movie!)
+        print("Click on info button")
+        guard let movie = self.movie else {return}
+        didInfo?(movie)
     }
     
 }

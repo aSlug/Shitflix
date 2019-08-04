@@ -36,6 +36,8 @@
 		3B3DF3A122F5D58C00A40500 /* BalloonsStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3A022F5D58C00A40500 /* BalloonsStrip.swift */; };
 		3B3DF3A322F5D85800A40500 /* BalloonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3A222F5D85800A40500 /* BalloonCell.swift */; };
 		3B3DF3A722F5E30100A40500 /* Strip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3A622F5E30100A40500 /* Strip.swift */; };
+		3B3DF3A922F6067700A40500 /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3A822F6067700A40500 /* MovieDetailsView.swift */; };
+		3B3DF3AC22F6069600A40500 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3AB22F6069600A40500 /* MovieDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		3B3DF3A022F5D58C00A40500 /* BalloonsStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonsStrip.swift; sourceTree = "<group>"; };
 		3B3DF3A222F5D85800A40500 /* BalloonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonCell.swift; sourceTree = "<group>"; };
 		3B3DF3A622F5E30100A40500 /* Strip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strip.swift; sourceTree = "<group>"; };
+		3B3DF3A822F6067700A40500 /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
+		3B3DF3AB22F6069600A40500 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +187,8 @@
 				3B3DF3A022F5D58C00A40500 /* BalloonsStrip.swift */,
 				3B3DF3A222F5D85800A40500 /* BalloonCell.swift */,
 				3B3DF3A622F5E30100A40500 /* Strip.swift */,
+				3B3DF3A822F6067700A40500 /* MovieDetailsView.swift */,
+				3B3DF3AB22F6069600A40500 /* MovieDetailsViewController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -419,6 +425,7 @@
 			files = (
 				3B3DF3A722F5E30100A40500 /* Strip.swift in Sources */,
 				2AEC59AD22F2FE0800DC8CD2 /* Movie.swift in Sources */,
+				3B3DF3AC22F6069600A40500 /* MovieDetailsViewController.swift in Sources */,
 				2AEC59C622F4877F00DC8CD2 /* Palette.swift in Sources */,
 				2AEC59B322F320A200DC8CD2 /* PosterCell.swift in Sources */,
 				2AEC599922F2E02200DC8CD2 /* FindView.swift in Sources */,
@@ -435,6 +442,7 @@
 				2AEC59BC22F4635D00DC8CD2 /* Constants.swift in Sources */,
 				2AEC599122F2DFBE00DC8CD2 /* HomepageView.swift in Sources */,
 				2AEC596322F2DD1E00DC8CD2 /* ViewController.swift in Sources */,
+				3B3DF3A922F6067700A40500 /* MovieDetailsView.swift in Sources */,
 				2AEC59A822F2FBA400DC8CD2 /* HeadlineMovieCell.swift in Sources */,
 				2AEC596122F2DD1E00DC8CD2 /* AppDelegate.swift in Sources */,
 				2AEC599F22F2E05300DC8CD2 /* DownloadViewController.swift in Sources */,
@@ -609,6 +617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QW45D3P5HQ;
 				INFOPLIST_FILE = Shitflix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -626,6 +635,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QW45D3P5HQ;
 				INFOPLIST_FILE = Shitflix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
