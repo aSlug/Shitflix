@@ -10,6 +10,8 @@ class PostersStrip: UICollectionViewCell, Strip {
         }
     }
     
+    var didSelectMovie: ((Movie) -> ())?
+    
     private let label = UILabel()
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
@@ -80,8 +82,12 @@ extension PostersStrip: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let movieCell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCell.rID, for: indexPath) as! PosterCell
+        
         movieCell.movie = movieStrip?.movies?[indexPath.row]
+        movieCell.didSelectMovie = self.didSelectMovie
+        
         return movieCell
     }
 

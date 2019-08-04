@@ -12,6 +12,8 @@ class HomepageView: UIView {
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
+    var didSelectMovie: ((Movie) -> ())?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         // TODO
@@ -82,6 +84,7 @@ extension HomepageView: UICollectionViewDataSource {
              .popular,
              .topRated:
             stripCell = collectionView.dequeueReusableCell(withReuseIdentifier: PostersStrip.rID, for: indexPath) as! PostersStrip
+            (stripCell as! PostersStrip).didSelectMovie = self.didSelectMovie
         }
     
         stripCell.movieStrip = strip
@@ -90,8 +93,12 @@ extension HomepageView: UICollectionViewDataSource {
     
     // headliner
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeadlineMovieCell.rID, for: indexPath) as! HeadlineMovieCell
+        
         header.movie = MovieArchive.archive.headliner
+        header.didInfo = self.didSelectMovie
+        
         return header
     }
     

@@ -14,10 +14,16 @@ class HomepageViewController: UIViewController {
     
     override func loadView() {
         let v = HomepageView()
+        v.didSelectMovie = showDetailsOf(movie:)
         movieArchive.archiveDidUpdate = {
             v.collectionView.reloadData()
         }
         self.view = v
+    }
+    
+    func showDetailsOf(movie: Movie) {
+        let movieDetailsVC = MovieDetailsViewController()
+        self.present(movieDetailsVC, animated: true)
     }
     
 }
