@@ -9,6 +9,12 @@ class MovieDetailsView: UIView {
         }
     }
     
+    var correlatedMovies: [Movie]? {
+        didSet {
+            update()
+        }
+    }
+    
     private var poster = UIImageView()
     private var releaseYear = UILabel()
     private var runtime = UILabel()
@@ -22,11 +28,15 @@ class MovieDetailsView: UIView {
     
     private var blur = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
     
+    private var reccomendations = ReccomendationsView()
+    
     var didPlay: ((Movie) -> ())?
     var didToggleAddToList: ((Movie) -> ())?
     var didToggleLike: ((Movie) -> ())?
     var didShare: ((Movie) -> ())?
     var didDownload: ((Movie) -> ())?
+    
+    var didSelectMovie: ((Int) -> ())?
     
     var didSwipeDown: (() -> ())?
 
@@ -60,7 +70,11 @@ class MovieDetailsView: UIView {
         shareBtn.addTarget(self, action: #selector(onShare), for: .touchUpInside)
         downloadBtn.addTarget(self, action: #selector(onDownload), for: .touchUpInside)
         
-        /* the use closes the detail view by swiping down */
+        self.addSubview(reccomendations)
+        reccomendations.movies = correlatedMovies
+        reccomendations.didSelectMovie = didSelectMovie
+        
+        // the user closes the detail view by swiping down
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(onSwipeDown))
         swipeGesture.direction = .down
         self.addGestureRecognizer(swipeGesture)
@@ -68,7 +82,7 @@ class MovieDetailsView: UIView {
     
     private func style() {
         
-        /* add blurr effect over background image */
+        // add blurr effect over background image
         blur.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         poster.layer.shadowColor = UIColor.black.cgColor
@@ -85,10 +99,10 @@ class MovieDetailsView: UIView {
         shareBtn.setImage(UIImage(named: "share-button-normal"), for: .normal)
         downloadBtn.setImage(UIImage(named: "download-button-normal"), for: .normal)
         
-        // TODO: change color of info label
-        releaseYear.textColor = .white
-        runtime.textColor = .white
-        overview.textColor = .white
+        // TODO: change font
+        releaseYear.textColor = UIColor(hex: Palette.unselected)
+        runtime.textColor = UIColor(hex: Palette.unselected)
+        overview.textColor = UIColor(hex: Palette.unselected)
     }
     
     private func update() {
@@ -120,6 +134,9 @@ class MovieDetailsView: UIView {
         }
         
         overview.text = movie.overview ?? ""
+        
+        // pass the updated correlated movies to the subview
+        reccomendations.movies = correlatedMovies
     }
     
     override func layoutSubviews() {

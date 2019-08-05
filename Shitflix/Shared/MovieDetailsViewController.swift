@@ -19,13 +19,15 @@ class MovieDetailsViewController: UIViewController {
         v.didSwipeDown = { [weak self] in
             self?.dismiss(animated: true)
         }
+        //TODO: verify reference cycle
+        v.didSelectMovie = showDetailsOfMovie(withId:)
         self.view = v
     }
     
     private func update() {
-        guard movieID != nil else { return }
+        guard let movieID = self.movieID else { return }
         
-        TMDService.getMovie(id: movieID!, then: { result in
+        TMDService.getMovie(id: movieID, then: { result in
             switch result {
             case .success(let movie):
                 (self.view as! MovieDetailsView).movie = movie
@@ -35,7 +37,21 @@ class MovieDetailsViewController: UIViewController {
             }
         })
         
+        TMDService.getReccomendations(for: movieID, then: { result in
+            switch result {
+            case .success(let movies):
+                (self.view as! MovieDetailsView).correlatedMovies = Array(movies[0...5])
+            case .failure(let error):
+                print("Failure while retrieving details about movie with id \(self.movieID!)")
+                print(error)
+            }
+        })
     }
-
+    
+    private func showDetailsOfMovie(withId id: Int) {
+        let movieDetailsVC = MovieDetailsViewController()
+        movieDetailsVC.movieID = id
+        self.present(movieDetailsVC, animated: true)
+    }
     
 }
