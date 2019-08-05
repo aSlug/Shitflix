@@ -52,8 +52,12 @@ class MovieDetailsViewController: UIViewController {
         TMDService.getReccomendations(for: movieID, then: { result in
             switch result {
             case .success(let movies):
-                let n = min(movies.count - 1, 5)
-                (self.view as! MovieDetailsView).correlatedMovies = Array(movies[0...n])
+                if !movies.isEmpty {
+                    let n = min(movies.count, 6) - 1
+                    (self.view as! MovieDetailsView).correlatedMovies = Array(movies[0...n])
+                } else {
+                    (self.view as! MovieDetailsView).correlatedMovies = []
+                }
             case .failure(let error):
                 print("Failure while retrieving details about movie with id \(self.movieID!)")
                 print(error)
