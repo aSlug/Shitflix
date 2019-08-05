@@ -14,6 +14,8 @@ class MovieDetailsView: UIView {
         }
     }
     
+    private var closeBtn = UIButton()
+    
     private var poster = UIImageView()
     private var releaseYear = UILabel()
     private var runtime = UILabel()
@@ -42,6 +44,7 @@ class MovieDetailsView: UIView {
         }
     }
     
+    var didTapClose: (() -> ())?
     var didSwipeDown: (() -> ())?
 
     override init(frame: CGRect) {
@@ -57,6 +60,8 @@ class MovieDetailsView: UIView {
     private func setup() {
         self.addSubview(blur)
         
+        self.addSubview(closeBtn)
+        
         self.addSubview(poster)
         self.addSubview(releaseYear)
         self.addSubview(runtime)
@@ -68,6 +73,8 @@ class MovieDetailsView: UIView {
         self.addSubview(shareBtn)
         self.addSubview(downloadBtn)
         
+        closeBtn.addTarget(self, action: #selector(onTapClose), for: .touchUpInside)
+        
         playBtn.addTarget(self, action: #selector(onPlay), for: .touchUpInside)
         addToListBtn.addTarget(self, action: #selector(onAdd), for: .touchUpInside)
         likeBtn.addTarget(self, action: #selector(onLike), for: .touchUpInside)
@@ -77,12 +84,6 @@ class MovieDetailsView: UIView {
         self.addSubview(reccomendations)
         reccomendations.title = "ALTRI SIMILI"
         reccomendations.movies = correlatedMovies
-        // FIXME: MovieDetailsView.didSelectMovie is nil
-        /* START DEBUG */
-        print("MovieDetailsView.didSelectMovie is \(didSelectMovie == nil ? "nil" : "ok")")
-        /* END DEBUG */
-        reccomendations.didSelectMovie = didSelectMovie
-
         
         // the user closes the detail view by swiping down
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(onSwipeDown))
@@ -95,12 +96,14 @@ class MovieDetailsView: UIView {
         // add blurr effect over background image
         blur.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        closeBtn.setImage(UIImage(named: "close-icon"), for: .normal)
+        
         poster.layer.shadowColor = UIColor.black.cgColor
         poster.layer.shadowOpacity = 0.7
         poster.layer.shadowRadius = 8
         
         playBtn.setImage(UIImage(named: "play-button-white"), for: .normal)
-        playBtn.setTitle("  Play", for: .normal)
+        playBtn.setTitle("  Riproduci", for: .normal)
         playBtn.backgroundColor = UIColor(hex: Palette.shitflix)
         playBtn.setTitleColor(.white, for: .normal)
         playBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
@@ -176,6 +179,8 @@ class MovieDetailsView: UIView {
         let overviewH = 80
         let buttonsY = overviewY + overviewH + 20
         
+        closeBtn.frame = CGRect(x: w - 35, y: 40, width: 25, height: 25)
+        
         poster.frame = CGRect(x: w/2 - posterW/2, y: posterY, width: posterW, height: posterH)
         
         releaseYear.frame = CGRect(x: w * 4/10 - 35, y: posterY + posterH + 15, width: 70, height: 20)
@@ -224,6 +229,10 @@ class MovieDetailsView: UIView {
     @objc private func onSwipeDown(_ s: UISwipeGestureRecognizer) {
         print("Swipe down on movie details view")
         self.didSwipeDown?()
+    }
+    @objc private func onTapClose() {
+        print("Tap close on movie details view")
+        self.didTapClose?()
     }
     
 }

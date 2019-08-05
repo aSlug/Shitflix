@@ -1,11 +1,3 @@
-//
-//  MainTabBarController.swift
-//  Shitflix
-//
-//  Created by BCamp User on 01/08/2019.
-//  Copyright © 2019 BCamp User. All rights reserved.
-//
-
 import UIKit
 
 class MainTabBarController: UITabBarController {
@@ -60,7 +52,6 @@ class MainTabBarController: UITabBarController {
         
         otherVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: Palette.unselected)], for: .normal)
         otherVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: Palette.selected)], for: .selected)
-        
     }
     
 }

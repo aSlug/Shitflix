@@ -46,7 +46,7 @@ class HeadlineMovieCell: UICollectionViewCell {
         addToListBtn.setImage(UIImage(named: "add-button-normal"), for: .normal)
         
         playBtn.setImage(UIImage(named: "play-button-black"), for: .normal)
-        playBtn.setTitle("  Play", for: .normal)
+        playBtn.setTitle("  Riproduci", for: .normal)
         playBtn.setTitleColor(.black, for: .normal)
         playBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         playBtn.backgroundColor = .white

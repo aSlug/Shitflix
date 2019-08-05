@@ -13,14 +13,26 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     
+    /*
+     MovieDetailsViewController can be created by another MovieDetailsViewController.
+     To be able to dismiss all the stack in a single shot this closure must always
+     refer to the one defined by the creator of the first one.
+     */
+    var didTapClose: (() -> ())?
+    
+    var isRootDetails = false
+    
     override func loadView() {
         let v = MovieDetailsView()
-        // TODO inject closures
+        
         v.didSwipeDown = { [weak self] in
             self?.dismiss(animated: true)
         }
-        //TODO: verify reference cycle
+        v.didTapClose = didTapClose
         v.didSelectMovie = showDetailsOfMovie(withId:)
+        
+        // TODO inject closures, verify reference cycle
+        
         self.view = v
     }
     
@@ -50,10 +62,10 @@ class MovieDetailsViewController: UIViewController {
     }
     
     private func showDetailsOfMovie(withId id: Int) {
-        print("showDetailsOfMovie(withId id: \(id)")
         let movieDetailsVC = MovieDetailsViewController()
         movieDetailsVC.movieID = id
+        // propagate the original closure inside the childs
+        movieDetailsVC.didTapClose = self.didTapClose
         self.present(movieDetailsVC, animated: true)
     }
-    
 }
