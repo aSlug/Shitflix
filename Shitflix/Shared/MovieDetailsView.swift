@@ -1,6 +1,5 @@
 import UIKit
 
-// TODO: add a subview with suggested movies
 class MovieDetailsView: UIView {
     
     var movie: Movie? {
@@ -28,7 +27,7 @@ class MovieDetailsView: UIView {
     
     private var blur = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffect.Style.dark))
     
-    private var reccomendations = ReccomendationsView()
+    private var reccomendations = PosterGrid()
     
     var didPlay: ((Movie) -> ())?
     var didToggleAddToList: ((Movie) -> ())?
@@ -36,7 +35,12 @@ class MovieDetailsView: UIView {
     var didShare: ((Movie) -> ())?
     var didDownload: ((Movie) -> ())?
     
-    var didSelectMovie: ((Int) -> ())?
+    var didSelectMovie: ((Int) -> ())? {
+        didSet {
+            /* once available propagate the closure in the childs */
+            reccomendations.didSelectMovie = didSelectMovie
+        }
+    }
     
     var didSwipeDown: (() -> ())?
 
@@ -71,8 +75,14 @@ class MovieDetailsView: UIView {
         downloadBtn.addTarget(self, action: #selector(onDownload), for: .touchUpInside)
         
         self.addSubview(reccomendations)
+        reccomendations.title = "ALTRI SIMILI"
         reccomendations.movies = correlatedMovies
+        // FIXME: MovieDetailsView.didSelectMovie is nil
+        /* START DEBUG */
+        print("MovieDetailsView.didSelectMovie is \(didSelectMovie == nil ? "nil" : "ok")")
+        /* END DEBUG */
         reccomendations.didSelectMovie = didSelectMovie
+
         
         // the user closes the detail view by swiping down
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(onSwipeDown))
@@ -93,15 +103,23 @@ class MovieDetailsView: UIView {
         playBtn.setTitle("  Play", for: .normal)
         playBtn.backgroundColor = UIColor(hex: Palette.shitflix)
         playBtn.setTitleColor(.white, for: .normal)
+        playBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         
         addToListBtn.setImage(UIImage(named: "add-button-normal"), for: .normal)
         likeBtn.setImage(UIImage(named: "like-button-normal"), for: .normal)
         shareBtn.setImage(UIImage(named: "share-button-normal"), for: .normal)
         downloadBtn.setImage(UIImage(named: "download-button-normal"), for: .normal)
         
-        // TODO: change font
+        releaseYear.textAlignment = .center
+        releaseYear.font = UIFont(name: "Gotham-Book", size: 16)
         releaseYear.textColor = UIColor(hex: Palette.unselected)
+        
+        runtime.textAlignment = .center
+        runtime.font = UIFont(name: "Gotham-Book", size: 16)
         runtime.textColor = UIColor(hex: Palette.unselected)
+        
+        overview.textAlignment = .justified
+        overview.font = UIFont(name: "Gotham-Book", size: 15)
         overview.textColor = UIColor(hex: Palette.unselected)
     }
     
@@ -161,24 +179,21 @@ class MovieDetailsView: UIView {
         poster.frame = CGRect(x: w/2 - posterW/2, y: posterY, width: posterW, height: posterH)
         
         releaseYear.frame = CGRect(x: w * 4/10 - 35, y: posterY + posterH + 15, width: 70, height: 20)
-        releaseYear.textAlignment = .center
         runtime.frame = CGRect(x: w * 6/10 - 35, y: posterY + posterH + 15, width: 70, height: 20)
-        runtime.textAlignment = .center
         
         playBtn.frame = CGRect(x: 10, y: playY, width: w - 20, height: playH)
         playBtn.layer.cornerRadius = 3
-        playBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         
         overview.frame = CGRect(x: 10, y: overviewY, width: w - 20, height: overviewH)
         overview.numberOfLines = 10
-        overview.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        overview.textAlignment = .justified
         overview.fadeView(style: .bottom, percentage: 0.50)
         
         addToListBtn.frame = CGRect(x: w * 1/8 - btnSize/2, y: buttonsY, width: btnSize, height: btnSize)
         likeBtn.frame = CGRect(x: w * 3/8 - btnSize/2, y: buttonsY, width: btnSize, height: btnSize)
         shareBtn.frame = CGRect(x: w * 5/8 - btnSize/2, y: buttonsY, width: btnSize, height: btnSize)
         downloadBtn.frame = CGRect(x: w * 7/8 - btnSize/2, y: buttonsY, width: btnSize, height: btnSize)
+        
+        reccomendations.frame = CGRect(x: 0, y: buttonsY + btnSize + 20, width: w, height: 600)
     }
     
     @objc private func onPlay() {

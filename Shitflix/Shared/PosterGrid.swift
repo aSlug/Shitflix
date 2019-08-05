@@ -1,6 +1,12 @@
 import UIKit
 
-class ReccomendationsView: UIView {
+class PosterGrid: UIView {
+    
+    var title: String? {
+        didSet {
+            titleLabel.text = title
+        }
+    }
     
     var movies: [Movie]? {
         didSet {
@@ -8,9 +14,24 @@ class ReccomendationsView: UIView {
         }
     }
     
-    var didSelectMovie: ((Int) -> ())?
+    var didSelectMovie: ((Int) -> ())? {
+        didSet {
+            /* once available propagate the closure in the childs */
+            for poster in posters {
+                poster.didSelectMovie = self.didSelectMovie
+            }
+        }
+    }
     
-    private var posters: [PosterCell] = Array(repeating: PosterCell(), count: 6)
+    private var titleLabel = UILabel()
+    private var posters: [PosterCell] = [
+        PosterCell(),
+        PosterCell(),
+        PosterCell(),
+        PosterCell(),
+        PosterCell(),
+        PosterCell()
+    ]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,12 +44,15 @@ class ReccomendationsView: UIView {
     }
     
     private func setup() {
+        self.addSubview(titleLabel)
         for poster in posters {
             self.addSubview(poster)
         }
     }
     
     private func style() {
+        titleLabel.textColor = .white
+        titleLabel.font =  UIFont.systemFont(ofSize: 18, weight: .heavy)
     }
     
     private func update() {
@@ -39,7 +63,6 @@ class ReccomendationsView: UIView {
             }
             for (i, movie) in movies.enumerated() {
                 posters[i].movie = movie
-                posters[i].didSelectMovie = didSelectMovie
             }
         }
         
@@ -47,6 +70,10 @@ class ReccomendationsView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        self.backgroundColor = UIColor(hex: Palette.background)
+        
+        titleLabel.frame = CGRect(x: 15, y: 15, width: 200, height: 20)
         
         // display the posters in a 3x2 grid
         let margin = 15
@@ -58,7 +85,7 @@ class ReccomendationsView: UIView {
             let c: Int = (i % 3) + 1
             poster.frame = CGRect(
                 x: (margin * c) + (posterW * (c-1)),
-                y: (margin * r) + (posterH * (r-1)),
+                y: 40 + (margin * r) + (posterH * (r-1)),
                 width: posterW,
                 height: posterH
             )

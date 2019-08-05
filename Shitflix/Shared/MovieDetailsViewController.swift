@@ -40,7 +40,8 @@ class MovieDetailsViewController: UIViewController {
         TMDService.getReccomendations(for: movieID, then: { result in
             switch result {
             case .success(let movies):
-                (self.view as! MovieDetailsView).correlatedMovies = Array(movies[0...5])
+                let n = min(movies.count - 1, 5)
+                (self.view as! MovieDetailsView).correlatedMovies = Array(movies[0...n])
             case .failure(let error):
                 print("Failure while retrieving details about movie with id \(self.movieID!)")
                 print(error)
@@ -49,6 +50,7 @@ class MovieDetailsViewController: UIViewController {
     }
     
     private func showDetailsOfMovie(withId id: Int) {
+        print("showDetailsOfMovie(withId id: \(id)")
         let movieDetailsVC = MovieDetailsViewController()
         movieDetailsVC.movieID = id
         self.present(movieDetailsVC, animated: true)
