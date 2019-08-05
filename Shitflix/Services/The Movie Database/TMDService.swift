@@ -20,6 +20,19 @@ class TMDService {
         case w300, w780, w1280, original
     }
     
+    /* internal structure used to decode an array of movies */
+    private struct Page: Codable {
+        let results: [Movie]
+    }
+    
+    private static var decoder: JSONDecoder {
+        let decoder = JSONDecoder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        return decoder
+    }
+    
     static func fetchImage(from path: String, ofSize size: PosterSizes, then handler: @escaping (Result<UIImage, Error>) -> Void) {
         
         let url = TMDEndpoints.baseImgUrl + size.rawValue + path
@@ -45,7 +58,8 @@ class TMDService {
     
     static func getMovie(id: Int, then handler: @escaping (Result<Movie, Error>) -> Void) {
         
-        var urlComp = URLComponents(string: TMDEndpoints.apiEndpoint + TMDResources.movie + "/" + String(id))!
+        let resource = TMDResources.movie.replacingOccurrences(of: "{movie_id}", with: String(id))
+        var urlComp = URLComponents(string: TMDEndpoints.apiEndpoint + resource)!
         urlComp.queryItems = [
             URLQueryItem(name: "api_key", value: apiKey)
         ]
@@ -62,11 +76,6 @@ class TMDService {
             }
             
             DispatchQueue.main.async() {
-                let decoder = JSONDecoder()
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                decoder.dateDecodingStrategy = .formatted(dateFormatter)
-                
                 do {
                     let movie = try decoder.decode(Movie.self, from: data)
                     handler(.success(movie))
@@ -80,20 +89,13 @@ class TMDService {
     }
     
     static func getMovieStrip(for type: MovieStripType, then handler: @escaping (Result<[Movie], Error>) -> Void) {
-        
-        /* internal structure used to decode an array of movies */
-        struct Page: Codable {
-            let results: [Movie]
-        }
-        
+
         let resource: String
         switch type {
         case .popular:
             resource = TMDResources.popular
         case .upcoming:
             resource = TMDResources.upcoming
-        case .latest:
-            resource = TMDResources.latest
         case .topRated:
             resource = TMDResources.topRated
         }
@@ -115,11 +117,6 @@ class TMDService {
             }
             
             DispatchQueue.main.async() {
-                let decoder = JSONDecoder()
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                decoder.dateDecodingStrategy = .formatted(dateFormatter)
-                
                 do {
                     let page = try decoder.decode(Page.self, from: data)
                     handler(.success(page.results))
@@ -129,6 +126,38 @@ class TMDService {
             }
             
         }.resume()
+        
+    }
+    
+    static func getReccomendations(for movieId: Int, then handler: @escaping (Result<[Movie], Error>) -> Void) {
+        
+        let resource = TMDResources.reccomendations.replacingOccurrences(of: "{movie_id}", with: String(movieId))
+        var urlComp = URLComponents(string: TMDEndpoints.apiEndpoint + resource)!
+        urlComp.queryItems = [
+            URLQueryItem(name: "api_key", value: apiKey)
+        ]
+        let url = urlComp.url!.absoluteString
+        
+        URLSession.shared.dataTask(with: URL(string: url)!) { data, response, error in
+            
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let data = data, error == nil
+                else {
+                    handler(.failure(error!)) //FIXME: does error always exists?
+                    return
+            }
+            
+            DispatchQueue.main.async() {
+                do {
+                    let page = try decoder.decode(Page.self, from: data)
+                    handler(.success(page.results))
+                } catch {
+                    handler(.failure(error))
+                }
+            }
+            
+            }.resume()
         
     }
     

@@ -29,7 +29,6 @@
 		2AEC59B122F31DB000DC8CD2 /* MovieStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59B022F31DB000DC8CD2 /* MovieStrip.swift */; };
 		2AEC59B322F320A200DC8CD2 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59B222F320A200DC8CD2 /* PosterCell.swift */; };
 		2AEC59B922F4287D00DC8CD2 /* TMDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59B822F4287D00DC8CD2 /* TMDService.swift */; };
-		2AEC59BC22F4635D00DC8CD2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59BB22F4635D00DC8CD2 /* Constants.swift */; };
 		2AEC59C122F4678100DC8CD2 /* TMDResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59C022F4678100DC8CD2 /* TMDResources.swift */; };
 		2AEC59C622F4877F00DC8CD2 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59C522F4877F00DC8CD2 /* Palette.swift */; };
 		2AEC59C922F488CA00DC8CD2 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC59C822F488CA00DC8CD2 /* UIColor+Hex.swift */; };
@@ -39,6 +38,7 @@
 		3B3DF3A922F6067700A40500 /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3A822F6067700A40500 /* MovieDetailsView.swift */; };
 		3B3DF3AC22F6069600A40500 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3AB22F6069600A40500 /* MovieDetailsViewController.swift */; };
 		3B3DF3AE22F766E100A40500 /* UIView+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DF3AD22F766E100A40500 /* UIView+Fade.swift */; };
+		3BC4CF2022F8142900A01FB2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC4CF1F22F8142900A01FB2 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +87,6 @@
 		2AEC59B022F31DB000DC8CD2 /* MovieStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStrip.swift; sourceTree = "<group>"; };
 		2AEC59B222F320A200DC8CD2 /* PosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCell.swift; sourceTree = "<group>"; };
 		2AEC59B822F4287D00DC8CD2 /* TMDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDService.swift; sourceTree = "<group>"; };
-		2AEC59BB22F4635D00DC8CD2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2AEC59C022F4678100DC8CD2 /* TMDResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDResources.swift; sourceTree = "<group>"; };
 		2AEC59C522F4877F00DC8CD2 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		2AEC59C822F488CA00DC8CD2 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
@@ -97,6 +96,7 @@
 		3B3DF3A822F6067700A40500 /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		3B3DF3AB22F6069600A40500 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		3B3DF3AD22F766E100A40500 /* UIView+Fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Fade.swift"; sourceTree = "<group>"; };
+		3BC4CF1F22F8142900A01FB2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,8 +272,8 @@
 		2AEC59BA22F4634E00DC8CD2 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
-				2AEC59BB22F4635D00DC8CD2 /* Constants.swift */,
 				2AEC59C522F4877F00DC8CD2 /* Palette.swift */,
+				3BC4CF1F22F8142900A01FB2 /* Constants.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -437,12 +437,12 @@
 				2AEC59C922F488CA00DC8CD2 /* UIColor+Hex.swift in Sources */,
 				2AEC59A622F2EAB500DC8CD2 /* MainTabBarController.swift in Sources */,
 				2AEC59C122F4678100DC8CD2 /* TMDResources.swift in Sources */,
+				3BC4CF2022F8142900A01FB2 /* Constants.swift in Sources */,
 				3B3DF3A122F5D58C00A40500 /* BalloonsStrip.swift in Sources */,
 				2AEC59A122F2E05E00DC8CD2 /* OtherView.swift in Sources */,
 				2AEC59AA22F2FBFE00DC8CD2 /* PostersStrip.swift in Sources */,
 				2AEC599D22F2E03A00DC8CD2 /* DownloadView.swift in Sources */,
 				2AEC59AF22F31A5900DC8CD2 /* MovieArchive.swift in Sources */,
-				2AEC59BC22F4635D00DC8CD2 /* Constants.swift in Sources */,
 				2AEC599122F2DFBE00DC8CD2 /* HomepageView.swift in Sources */,
 				2AEC596322F2DD1E00DC8CD2 /* ViewController.swift in Sources */,
 				3B3DF3A922F6067700A40500 /* MovieDetailsView.swift in Sources */,

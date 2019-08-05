@@ -14,9 +14,11 @@ struct TMDEndpoints {
 }
 
 struct TMDResources {
-    static let movie = "/movie"
+    static let movie = "/movie/{movie_id}"
     static let popular = "/movie/popular"
     static let upcoming = "/movie/upcoming"
-    static let latest = "/movie/top_rated"
+    static let nowPlaying = "/movie/now_playing"
+    static let latest = "/movie/latest"
     static let topRated = "/movie/top_rated"
+    static let reccomendations = "/movie/{movie_id}/recommendations"
 }

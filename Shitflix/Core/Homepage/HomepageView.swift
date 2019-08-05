@@ -80,8 +80,7 @@ extension HomepageView: UICollectionViewDataSource {
         switch strip.type {
         case .upcoming:
             stripCell = collectionView.dequeueReusableCell(withReuseIdentifier: BalloonsStrip.rID, for: indexPath) as! BalloonsStrip
-        case .latest,
-             .popular,
+        case .popular,
              .topRated:
             stripCell = collectionView.dequeueReusableCell(withReuseIdentifier: PostersStrip.rID, for: indexPath) as! PostersStrip
             (stripCell as! PostersStrip).didSelectMovie = self.didSelectMovie

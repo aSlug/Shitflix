@@ -35,7 +35,11 @@ class MovieArchive {
         })
         
         /* retrieve strips */
-        for movieGroupType in MovieStripType.allCases {
+        for movieGroupType: MovieStripType in [
+            .upcoming,
+            .popular,
+            .topRated
+            ] {
             
             TMDService.getMovieStrip(for: movieGroupType, then: { result in
                 switch result {
