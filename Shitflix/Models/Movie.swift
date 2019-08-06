@@ -48,8 +48,8 @@ extension Movie: Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: Codingkeys.self)
         
-        posterPath = try values.decode(String.self, forKey: .poster)
-        releaseDate = try values.decodeIfPresent(Date.self, forKey: .releaseDate)
+        posterPath = (try? values.decodeIfPresent(String.self, forKey: .poster)) ?? ""
+        releaseDate = try? values.decodeIfPresent(Date.self, forKey: .releaseDate)
         overview = try values.decodeIfPresent(String.self, forKey: .overview)
         genre = try values.decodeIfPresent([Int].self, forKey: .genre) ?? []
         id = try values.decode(Int.self, forKey: .id)

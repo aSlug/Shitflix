@@ -21,4 +21,5 @@ struct TMDResources {
     static let latest = "/movie/latest"
     static let topRated = "/movie/top_rated"
     static let reccomendations = "/movie/{movie_id}/recommendations"
+    static let searchMovie = "/search/movie"
 }
