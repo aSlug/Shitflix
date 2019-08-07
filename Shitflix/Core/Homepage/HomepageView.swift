@@ -38,6 +38,7 @@ class HomepageView: UIView {
 
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         addSubview(collectionView)
     }
@@ -99,6 +100,31 @@ extension HomepageView: UICollectionViewDataSource {
         header.didInfo = self.didSelectMovie
         
         return header
+    }
+    
+}
+
+extension HomepageView: UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let size: CGSize
+        
+        let w = Int(self.bounds.width)
+        let labelH = 30
+        let elemW = 105
+        
+        switch MovieArchive.archive.strips[indexPath.row].type {
+        case .upcoming:
+            size = CGSize(width: w, height: labelH + elemW)
+        case .popular,
+             .topRated:
+            size = CGSize(width: w, height: labelH + elemW * 3/2)
+        }
+        
+        return size
     }
     
 }

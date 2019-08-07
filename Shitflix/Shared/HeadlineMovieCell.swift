@@ -15,9 +15,11 @@ class HeadlineMovieCell: UICollectionViewCell {
     var didInfo: ((Int) -> ())?
     
     private var poster = UIImageView()
-    private var addToListBtn = UIButton() // TODO: create custom button
-    private var playBtn = UIButton() // TODO: create custom button
+    private var addToListBtn = UIButton()
+    private var addToListLbl = UILabel()
+    private var playBtn = UIButton()
     private var infoBtn = UIButton()
+    private var infoLbl = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -32,8 +34,10 @@ class HeadlineMovieCell: UICollectionViewCell {
     private func setup() {
         self.contentView.addSubview(poster)
         self.contentView.addSubview(addToListBtn)
+        self.contentView.addSubview(addToListLbl)
         self.contentView.addSubview(playBtn)
         self.contentView.addSubview(infoBtn)
+        self.contentView.addSubview(infoLbl)
         
         addToListBtn.addTarget(self, action: #selector(onAddToList), for: .touchUpInside)
         playBtn.addTarget(self, action: #selector(onPlay), for: .touchUpInside)
@@ -44,6 +48,10 @@ class HeadlineMovieCell: UICollectionViewCell {
         self.clipsToBounds = true
         
         addToListBtn.setImage(UIImage(named: "add-button-normal"), for: .normal)
+        addToListLbl.text = "La mia lista"
+        addToListLbl.font = UIFont(name: "Gotham-Book", size: 12)
+        addToListLbl.textColor = .white
+        addToListLbl.textAlignment = .center
         
         playBtn.setImage(UIImage(named: "play-button-black"), for: .normal)
         playBtn.setTitle("  Riproduci", for: .normal)
@@ -52,6 +60,10 @@ class HeadlineMovieCell: UICollectionViewCell {
         playBtn.backgroundColor = .white
         
         infoBtn.setImage(UIImage(named: "info-icon-normal"), for: .normal)
+        infoLbl.text = "Info"
+        infoLbl.font = UIFont(name: "Gotham-Book", size: 12)
+        infoLbl.textColor = .white
+        infoLbl.textAlignment = .center
     }
     
     private func update() {
@@ -74,6 +86,15 @@ class HeadlineMovieCell: UICollectionViewCell {
         let w = self.bounds.width
         let h = self.bounds.height
         
+        let iconSize = CGFloat(30)
+        let labelW = CGFloat(70)
+        let labelH = CGFloat(20)
+        let playW = CGFloat(120)
+        let playH = CGFloat(35)
+        
+        let buttonsY = CGFloat(490)
+        let labelsY = buttonsY + 30
+        
         poster.frame = CGRect(
             x: 0,
             y: 0,
@@ -81,24 +102,39 @@ class HeadlineMovieCell: UICollectionViewCell {
             height: h
         )
         poster.fadeView(style: .bottom, percentage: 0.15)
+        
         addToListBtn.frame = CGRect(
-            x: w * 0.10,
-            y: h * 0.88,
-            width: 30,
-            height: 30
+            x: w * 0.15 - iconSize/2,
+            y: buttonsY - iconSize/2,
+            width: iconSize,
+            height: iconSize
         )
+        addToListLbl.frame = CGRect(
+            x: w * 0.15 - labelW/2,
+            y: labelsY - labelH/2,
+            width: labelW,
+            height: labelH
+        )
+        
         playBtn.frame = CGRect(
-            x: w * 0.5 - 60,
-            y: h * 0.88,
-            width: 120,
-            height: 35
+            x: w * 0.5 - playW/2,
+            y: buttonsY - playH/2,
+            width: playW,
+            height: playH
         )
         playBtn.layer.cornerRadius = 3
+        
         infoBtn.frame = CGRect(
-            x: w * 0.90 - 30,
-            y: h * 0.88,
-            width: 30,
-            height: 30
+            x: w * 0.85 - iconSize/2,
+            y: buttonsY - iconSize/2,
+            width: iconSize,
+            height: iconSize
+        )
+        infoLbl.frame = CGRect(
+            x: w * 0.85 - labelW/2,
+            y: labelsY - labelH/2,
+            width: labelW,
+            height: labelH
         )
     }
     

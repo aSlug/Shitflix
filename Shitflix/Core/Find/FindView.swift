@@ -38,7 +38,7 @@ class FindView: UIView {
     
     private func style() {
         searchBar.barStyle = .black
-        searchBar.placeholder = "Search movie"
+        searchBar.placeholder = "Cerca"
         // TODO improve the style of the searchbar
     }
     
