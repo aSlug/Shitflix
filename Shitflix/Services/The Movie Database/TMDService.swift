@@ -1,11 +1,3 @@
-//
-//  TheMovieDatabase.swift
-//  Shitflix
-//
-//  Created by BCamp User on 02/08/2019.
-//  Copyright © 2019 BCamp User. All rights reserved.
-//
-
 import UIKit
 
 class TMDService {
@@ -119,7 +111,8 @@ class TMDService {
             DispatchQueue.main.async() {
                 do {
                     let page = try decoder.decode(Page.self, from: data)
-                    handler(.success(page.results))
+                    let cleanResult = page.results.filter { !$0.posterPath.isEmpty }
+                    handler(.success(cleanResult))
                 } catch {
                     handler(.failure(error))
                 }
@@ -151,7 +144,42 @@ class TMDService {
             DispatchQueue.main.async() {
                 do {
                     let page = try decoder.decode(Page.self, from: data)
-                    handler(.success(page.results))
+                    let cleanResult = page.results.filter { !$0.posterPath.isEmpty }
+                    handler(.success(cleanResult))
+                } catch {
+                    handler(.failure(error))
+                }
+            }
+            
+            }.resume()
+        
+    }
+    
+    static func searchMovie(with query: String, then handler: @escaping (Result<[Movie], Error>) -> Void) {
+        
+        let resource = TMDResources.searchMovie
+        var urlComp = URLComponents(string: TMDEndpoints.apiEndpoint + resource)!
+        urlComp.queryItems = [
+            URLQueryItem(name: "api_key", value: apiKey),
+            URLQueryItem(name: "query", value: query)
+        ]
+        let url = urlComp.url!.absoluteString
+        
+        URLSession.shared.dataTask(with: URL(string: url)!) { data, response, error in
+            
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let data = data, error == nil
+                else {
+                    handler(.failure(error!)) //FIXME: does error always exists?
+                    return
+            }
+            
+            DispatchQueue.main.async() {
+                do {
+                    let page = try decoder.decode(Page.self, from: data)
+                    let cleanResult = page.results.filter { !$0.posterPath.isEmpty }
+                    handler(.success(cleanResult))
                 } catch {
                     handler(.failure(error))
                 }
