@@ -8,7 +8,7 @@ struct MovieStrip {
 }
 
 enum MovieStripType: String, CaseIterable {
-    case upcoming = "In arrivo"
-    case popular = "Popolari ora"
-    case topRated = "Top rated"
+    case upcoming = "Delusioni in arrivo"
+    case thisYear = "Il peggio quest'anno"
+    case genre = "Il peggio dei film"
 }

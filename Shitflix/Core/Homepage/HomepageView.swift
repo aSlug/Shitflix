@@ -54,7 +54,6 @@ class HomepageView: UIView {
         super.layoutSubviews()
         
         layout.headerReferenceSize = CGSize(width: bounds.width, height: 550)
-        layout.itemSize = CGSize(width: bounds.width, height: 105 * 3/2 + 30) //FIXME: make the height dynamic
         collectionView.frame = bounds
     }
     
@@ -81,8 +80,7 @@ extension HomepageView: UICollectionViewDataSource {
         switch strip.type {
         case .upcoming:
             stripCell = collectionView.dequeueReusableCell(withReuseIdentifier: BalloonsStrip.rID, for: indexPath) as! BalloonsStrip
-        case .popular,
-             .topRated:
+        default:
             stripCell = collectionView.dequeueReusableCell(withReuseIdentifier: PostersStrip.rID, for: indexPath) as! PostersStrip
             (stripCell as! PostersStrip).didSelectMovie = self.didSelectMovie
         }
@@ -119,8 +117,7 @@ extension HomepageView: UICollectionViewDelegateFlowLayout{
         switch MovieArchive.archive.strips[indexPath.row].type {
         case .upcoming:
             size = CGSize(width: w, height: labelH + elemW)
-        case .popular,
-             .topRated:
+        default:
             size = CGSize(width: w, height: labelH + elemW * 3/2)
         }
         

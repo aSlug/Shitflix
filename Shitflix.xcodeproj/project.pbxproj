@@ -44,6 +44,7 @@
 		3B76A3A922F84ADF008000B0 /* Gotham-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B76A3A422F84ADF008000B0 /* Gotham-Thin.otf */; };
 		3BC4CF2022F8142900A01FB2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC4CF1F22F8142900A01FB2 /* Constants.swift */; };
 		3BC4CF2222F816CD00A01FB2 /* PosterGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC4CF2122F816CD00A01FB2 /* PosterGrid.swift */; };
+		3BED8BB42302185B002CE218 /* TMDCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BED8BB32302185B002CE218 /* TMDCommons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		3B76A3A422F84ADF008000B0 /* Gotham-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham-Thin.otf"; path = "../../../../Library/Fonts/Gotham-Thin.otf"; sourceTree = "<group>"; };
 		3BC4CF1F22F8142900A01FB2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3BC4CF2122F816CD00A01FB2 /* PosterGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterGrid.swift; sourceTree = "<group>"; };
+		3BED8BB32302185B002CE218 /* TMDCommons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDCommons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 			children = (
 				2AEC59B822F4287D00DC8CD2 /* TMDService.swift */,
 				2AEC59C022F4678100DC8CD2 /* TMDResources.swift */,
+				3BED8BB32302185B002CE218 /* TMDCommons.swift */,
 			);
 			path = "The Movie Database";
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				2AEC59AF22F31A5900DC8CD2 /* MovieArchive.swift in Sources */,
 				3BC4CF2222F816CD00A01FB2 /* PosterGrid.swift in Sources */,
 				2AEC599122F2DFBE00DC8CD2 /* HomepageView.swift in Sources */,
+				3BED8BB42302185B002CE218 /* TMDCommons.swift in Sources */,
 				3B3DF3A922F6067700A40500 /* MovieDetailsView.swift in Sources */,
 				3B3DF3AE22F766E100A40500 /* UIView+Fade.swift in Sources */,
 				2AEC59A822F2FBA400DC8CD2 /* HeadlineMovieCell.swift in Sources */,

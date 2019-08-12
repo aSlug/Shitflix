@@ -34,24 +34,48 @@ class MovieArchive {
             }
         })
         
-        /* retrieve strips */
-        for movieGroupType: MovieStripType in [
-            .upcoming,
-            .popular,
-            .topRated
+        /* retrieve upcoming movies */
+        TMDService.getMovieList(of: .upcoming, then: { result in
+            switch result {
+            case .success(let movies):
+                let strip = MovieStrip(type: .upcoming, movies: movies)
+                self.strips.append(strip)
+            case .failure(let error):
+                print("Failure while retrieving movies for strip \(MovieStripType.upcoming.rawValue)")
+                print(error)
+            }
+        })
+        
+        /* retrieve this year's movies */
+        TMDService.getMovies(ofYear: 2019, then: { result in
+            switch result {
+            case .success(let movies):
+                let strip = MovieStrip(type: .thisYear, movies: movies)
+                self.strips.append(strip)
+            case .failure(let error):
+                print("Failure while retrieving movies for strip \(MovieStripType.thisYear.rawValue)")
+                print(error)
+            }
+        })
+        
+        /* retrieve list of movies by genre */
+        for g in [
+            TMDGenres.fantasy,
+            TMDGenres.action,
+            TMDGenres.comedy
             ] {
-            
-            TMDService.getMovieStrip(for: movieGroupType, then: { result in
-                switch result {
-                case .success(let movies):
-                    let strip = MovieStrip(type: movieGroupType, movies: movies)
-                    self.strips.append(strip)
-                case .failure(let error):
-                    print("Failure while retrieving movies for strip \(movieGroupType.rawValue)")
-                    print(error)
-                }
-            })
-            
+             
+                TMDService.getMovies(withGenre: g.id, then: { result in
+                    switch result {
+                    case .success(let movies):
+                        let strip = MovieStrip(type: .genre, movies: movies)
+                        self.strips.append(strip)
+                    case .failure(let error):
+                        print("Failure while retrieving movies for strip \(g.name)")
+                        print(error)
+                    }
+                })
+                
         }
         
     }

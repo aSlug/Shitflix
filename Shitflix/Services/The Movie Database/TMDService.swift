@@ -12,6 +12,12 @@ class TMDService {
         case w300, w780, w1280, original
     }
     
+    enum MovieListType {
+        case popular
+        case upcoming
+        case topRated
+    }
+    
     /* internal structure used to decode an array of movies */
     private struct Page: Codable {
         let results: [Movie]
@@ -80,16 +86,17 @@ class TMDService {
         
     }
     
-    static func getMovieStrip(for type: MovieStripType, then handler: @escaping (Result<[Movie], Error>) -> Void) {
+    static func getMovieList(of listType: MovieListType, then handler: @escaping (Result<[Movie], Error>) -> Void) {
 
         let resource: String
-        switch type {
+        
+        switch listType {
         case .popular:
             resource = TMDResources.popular
-        case .upcoming:
-            resource = TMDResources.upcoming
         case .topRated:
             resource = TMDResources.topRated
+        case .upcoming:
+            resource = TMDResources.upcoming
         }
         
         var urlComp = URLComponents(string: TMDEndpoints.apiEndpoint + resource)!
@@ -162,6 +169,78 @@ class TMDService {
         urlComp.queryItems = [
             URLQueryItem(name: "api_key", value: apiKey),
             URLQueryItem(name: "query", value: query)
+        ]
+        let url = urlComp.url!.absoluteString
+        
+        URLSession.shared.dataTask(with: URL(string: url)!) { data, response, error in
+            
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let data = data, error == nil
+                else {
+                    handler(.failure(error!)) //FIXME: does error always exists?
+                    return
+            }
+            
+            DispatchQueue.main.async() {
+                do {
+                    let page = try decoder.decode(Page.self, from: data)
+                    let cleanResult = page.results.filter { !$0.posterPath.isEmpty }
+                    handler(.success(cleanResult))
+                } catch {
+                    handler(.failure(error))
+                }
+            }
+            
+            }.resume()
+        
+    }
+    
+    static func getMovies(withGenre genre: Int, then handler: @escaping (Result<[Movie], Error>) -> Void) {
+        
+        let resource = TMDResources.discoverMovie
+        var urlComp = URLComponents(string: TMDEndpoints.apiEndpoint + resource)!
+        urlComp.queryItems = [
+            URLQueryItem(name: "api_key", value: apiKey),
+            URLQueryItem(name: "vote_count.gte", value: "10"),
+            URLQueryItem(name: "vote_average.lte", value: "5"),
+            URLQueryItem(name: "with_genres", value: String(genre))
+        ]
+        let url = urlComp.url!.absoluteString
+        
+        URLSession.shared.dataTask(with: URL(string: url)!) { data, response, error in
+            
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let data = data, error == nil
+                else {
+                    handler(.failure(error!)) //FIXME: does error always exists?
+                    return
+            }
+            
+            DispatchQueue.main.async() {
+                do {
+                    let page = try decoder.decode(Page.self, from: data)
+                    let cleanResult = page.results.filter { !$0.posterPath.isEmpty }
+                    handler(.success(cleanResult))
+                } catch {
+                    handler(.failure(error))
+                }
+            }
+            
+            }.resume()
+        
+    }
+    
+    static func getMovies(ofYear year: Int, then handler: @escaping (Result<[Movie], Error>) -> Void) {
+        
+        let resource = TMDResources.discoverMovie
+        var urlComp = URLComponents(string: TMDEndpoints.apiEndpoint + resource)!
+        urlComp.queryItems = [
+            URLQueryItem(name: "api_key", value: apiKey),
+            URLQueryItem(name: "vote_count.gte", value: "10"),
+            URLQueryItem(name: "vote_average.lte", value: "5"),
+            URLQueryItem(name: "year", value: String(year))
         ]
         let url = urlComp.url!.absoluteString
         
